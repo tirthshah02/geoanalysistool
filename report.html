@@ -556,6 +556,10 @@
     .cat-card-body { display: flex !important; }
   }
 </style>
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<script type="text/javascript">
+  Paddle.Initialize({ token: 'live_d95c7da15f18e4805557616fbae' });
+</script>
 </head>
 <body>
 
@@ -878,8 +882,11 @@ function renderReport(fields) {
 
 function unlockReport() {
   const submissionId = getParam('id');
-  const paddleUrl = 'https://buy.paddle.com/product/pri_01kmnkvev4kzz77x1vfj2mzw81?custom_data[report_id]=' + encodeURIComponent(submissionId);
-  window.location.href = paddleUrl;
+  Paddle.Checkout.open({
+    items: [{ priceId: 'pri_01kmnkvev4kzz77x1vfj2mzw81', quantity: 1 }],
+    customData: { report_id: submissionId },
+    successUrl: 'https://geoanalysistool.com/report.html?id=' + encodeURIComponent(submissionId) + '&preview=true'
+  });
 }
 
 async function init() {

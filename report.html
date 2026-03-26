@@ -257,7 +257,7 @@
     align-items: center;
   }
 
-  .chart-canvas-wrap { max-width: 240px; margin: 0 auto; }
+  .chart-canvas-wrap { max-width: 300px; margin: 0 auto; }
 
   .cat-bars { display: flex; flex-direction: column; gap: 14px; }
 
@@ -857,10 +857,17 @@ function renderReport(fields) {
 
   // Radar chart
   const ctx = document.getElementById('radarChart').getContext('2d');
+  const shortLabels = {
+    'Citation Hooks': 'Citations',
+    'Content Clarity': 'Clarity',
+    'Content Structure': 'Structure',
+    'Technical Access': 'Technical',
+    'Entity and Authority': 'Authority'
+  };
   new Chart(ctx, {
     type: 'radar',
     data: {
-      labels: categories.map(c => c.name.replace(' and ', ' & ')),
+      labels: categories.map(c => shortLabels[c.name] || c.name),
       datasets: [{
         data: categories.map(c => c.score),
         backgroundColor: 'rgba(26,107,60,0.08)',
@@ -880,10 +887,11 @@ function renderReport(fields) {
           ticks: { stepSize: 5, font: { size: 9 }, backdropColor: 'transparent', color: '#7a7a72' },
           grid: { color: 'rgba(15,15,13,0.08)' },
           angleLines: { color: 'rgba(15,15,13,0.08)' },
-          pointLabels: { font: { size: 10, family: 'Instrument Sans' }, color: '#3a3a36' }
+          pointLabels: { font: { size: 11, family: 'Instrument Sans', weight: '500' }, color: '#3a3a36' }
         }
       },
-      plugins: { legend: { display: false } }
+      plugins: { legend: { display: false } },
+      layout: { padding: 10 }
     }
   });
 }

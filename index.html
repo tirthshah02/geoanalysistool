@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO Analysis Tool — AI Citation Readiness Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0f0f0d;
+    --ink2: #3a3a36;
+    --ink3: #7a7a72;
+    --paper: #faf9f6;
+    --paper2: #f2f0ea;
+    --paper3: #e8e4da;
+    --accent: #1a1a18;
+    --green: #1a6b3c;
+    --green-bg: #edf7f2;
+    --rule: rgba(15,15,13,0.1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { font-style: italic; color: var(--ink3); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    font-size: 14px;
+    color: var(--ink3);
+  }
+
+  .nav-right a {
+    color: var(--ink3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-right a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px 80px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 50% 30%, rgba(26,107,60,0.04) 0%, transparent 70%),
+      repeating-linear-gradient(0deg, transparent, transparent 79px, var(--rule) 79px, var(--rule) 80px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, var(--rule) 79px, var(--rule) 80px);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-bg);
+    border: 1px solid rgba(26,107,60,0.2);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    max-width: 900px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--ink3);
+  }
+
+  .hero-sub {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--ink2);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-fine {
+    font-size: 14px;
+    color: var(--ink3);
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s 0.35s ease both;
+  }
+
+  /* Form embed */
+  .form-wrap {
+    width: 100%;
+    max-width: 640px;
+    background: #fff;
+    border: 1px solid var(--paper3);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(15,15,13,0.06), 0 1px 4px rgba(15,15,13,0.04);
+    animation: fadeUp 0.6s 0.4s ease both;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-wrap iframe {
+    width: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Trust bar */
+  .trust {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-top: 40px;
+    animation: fadeUp 0.6s 0.5s ease both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink3);
+  }
+
+  .trust-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--paper3);
+  }
+
+  /* How it works */
+  .section {
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 600px;
+    margin-bottom: 60px;
+  }
+
+  .section-title em { font-style: italic; color: var(--ink3); }
+
+  /* Steps */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--paper3);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .step {
+    background: var(--paper);
+    padding: 40px 36px;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 48px;
+    color: var(--paper3);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--ink3);
+    line-height: 1.6;
+  }
+
+  /* What we score */
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    background: var(--paper3);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+
+  .score-item {
+    background: var(--paper);
+    padding: 32px 28px;
+  }
+
+  .score-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--paper2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .score-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .score-desc {
+    font-size: 13px;
+    color: var(--ink3);
+    line-height: 1.5;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0 24px;
+  }
+
+  /* Pricing */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--paper3);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 700px;
+  }
+
+  .price-card {
+    background: var(--paper);
+    padding: 40px 36px;
+  }
+
+  .price-card.featured {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .price-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 20px;
+  }
+
+  .price-card.featured .price-label { color: rgba(255,255,255,0.5); }
+
+  .price-amount {
+    font-family: 'Instrument Serif', serif;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .price-card.featured .price-amount { color: #fff; }
+
+  .price-period {
+    font-size: 14px;
+    color: var(--ink3);
+    margin-bottom: 28px;
+  }
+
+  .price-card.featured .price-period { color: rgba(255,255,255,0.5); }
+
+  .price-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .price-features li {
+    font-size: 14px;
+    color: var(--ink2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .price-card.featured .price-features li { color: rgba(255,255,255,0.8); }
+
+  .price-features li::before {
+    content: '→';
+    font-size: 12px;
+    color: var(--ink3);
+    flex-shrink: 0;
+  }
+
+  .price-card.featured .price-features li::before { color: rgba(255,255,255,0.4); }
+
+  .price-cta {
+    display: block;
+    margin-top: 32px;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .price-card.featured .price-cta {
+    background: #fff;
+    color: var(--ink);
+  }
+
+  .price-cta:hover { opacity: 0.85; }
+
+  /* Research callout */
+  .research-box {
+    background: var(--paper2);
+    border: 1px solid var(--paper3);
+    border-radius: 16px;
+    padding: 40px 48px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-top: 60px;
+  }
+
+  .research-badge {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    color: #fff;
+    font-style: italic;
+  }
+
+  .research-text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .research-text p {
+    font-size: 14px;
+    color: var(--ink3);
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-brand {
+    font-family: 'Instrument Serif', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .footer-brand span { font-style: italic; color: var(--ink3); }
+
+  .footer-right {
+    font-size: 13px;
+    color: var(--ink3);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .steps { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .research-box { flex-direction: column; gap: 20px; padding: 28px 24px; }
+    footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">GEO<span>Analysis</span>Tool</a>
+  <div class="nav-right">
+    <a href="#how-it-works">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#audit" style="color:var(--ink);font-weight:500">Get free audit →</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="audit">
+  <div class="eyebrow">Free audit — no signup required</div>
+  <h1>Does AI <em>actually</em><br>know your page exists?</h1>
+  <p class="hero-sub">Paste any URL and get a full GEO audit — see exactly how likely your page is to be cited by ChatGPT, Perplexity, and Google AI Overviews.</p>
+  <p class="hero-fine">Free score in seconds. Full consulting-grade report for $19.</p>
+
+  <div class="form-wrap">
+    <iframe src="https://tally.so/embed/2ELOOb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" height="120" title="GEO Audit"></iframe>
+  </div>
+
+  <div class="trust">
+    <div class="trust-item">Based on Princeton GEO Research</div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">Works on any public URL</div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">No account needed</div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">Results in under 60 seconds</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- How it works -->
+<section class="section" id="how-it-works">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Three steps to knowing <em>where you stand</em></h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Paste your URL</div>
+      <div class="step-desc">Submit any publicly accessible page — a blog post, landing page, product page, or article.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">We analyse it</div>
+      <div class="step-desc">Our engine scores your page across five GEO factors that determine AI citation likelihood.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Get your report</div>
+      <div class="step-desc">Receive a free score instantly. Unlock the full consulting-grade report with specific fixes for $19.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- What we score -->
+<section class="section">
+  <div class="section-label">What we analyse</div>
+  <h2 class="section-title">Five factors that determine <em>AI citation</em></h2>
+
+  <div class="scores-grid">
+    <div class="score-item">
+      <div class="score-icon">◎</div>
+      <div class="score-name">Citation Hooks</div>
+      <div class="score-desc">Statistics, quotable claims, and original data that give AI engines something to cite.</div>
+    </div>
+    <div class="score-item">
+      <div class="score-icon">≡</div>
+      <div class="score-name">Content Structure</div>
+      <div class="score-desc">Heading hierarchy, FAQ quality, and passage-level clarity for AI retrieval.</div>
+    </div>
+    <div class="score-item">
+      <div class="score-icon">◈</div>
+      <div class="score-name">Content Clarity</div>
+      <div class="score-desc">Authoritative tone, specific claims, and fluency that AI engines trust and prefer.</div>
+    </div>
+    <div class="score-item">
+      <div class="score-icon">⊕</div>
+      <div class="score-name">Technical Access</div>
+      <div class="score-desc">Schema markup, crawler permissions, and structured data that AI bots can read.</div>
+    </div>
+    <div class="score-item">
+      <div class="score-icon">◇</div>
+      <div class="score-name">Entity and Authority</div>
+      <div class="score-desc">E-E-A-T signals, author credentials, and outbound citations that establish trust.</div>
+    </div>
+  </div>
+
+  <div class="research-box">
+    <div class="research-badge">P</div>
+    <div class="research-text">
+      <h3>Grounded in peer-reviewed research</h3>
+      <p>Our scoring framework is built on the Princeton and IIT Delhi GEO study (Aggarwal et al., 2024), the first academic research to identify which content signals improve AI citation visibility — by up to 40%. Not guesswork. Not SEO intuition. Actual science.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">Start free. Go <em>deeper</em> when you're ready.</h2>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-label">Free</div>
+      <div class="price-amount">$0</div>
+      <div class="price-period">always free</div>
+      <ul class="price-features">
+        <li>Overall AI citation score</li>
+        <li>Top 3 issues identified</li>
+        <li>Category breakdown overview</li>
+        <li>Works on any public URL</li>
+      </ul>
+      <a href="#audit" class="price-cta">Get free score</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-label">Full Report</div>
+      <div class="price-amount">$19</div>
+      <div class="price-period">one-time, per page</div>
+      <ul class="price-features">
+        <li>Everything in Free</li>
+        <li>Detailed analysis of all 5 factors</li>
+        <li>Specific rewrite recommendations</li>
+        <li>Quick wins vs long-term fixes</li>
+        <li>Priority action plan ranked by impact</li>
+        <li>Downloadable PDF report</li>
+      </ul>
+      <a href="#audit" class="price-cta">Get full report</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<footer>
+  <div class="footer-brand">GEO<span>AnalysisTool</span>.com</div>
+  <div class="footer-right">Built for content creators, bloggers, and SEO professionals.</div>
+</footer>
+
+</body>
+</html>

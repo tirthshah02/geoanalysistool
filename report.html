@@ -885,7 +885,9 @@ function unlockReport() {
   Paddle.Checkout.open({
     items: [{ priceId: 'pri_01kmnkvev4kzz77x1vfj2mzw81', quantity: 1 }],
     customData: { report_id: submissionId },
-    successUrl: 'https://geoanalysistool.com/report.html?id=' + encodeURIComponent(submissionId) + '&preview=true'
+    settings: {
+      successUrl: 'https://geoanalysistool.com/report.html?id=' + encodeURIComponent(submissionId) + '&preview=true'
+    }
   });
 }
 

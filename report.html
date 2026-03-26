@@ -737,6 +737,60 @@ function renderReport(fields) {
       </div>`;
   });
 
+  // Preview mode — show full report if ?preview=true
+  const preview = getParam('preview') === 'true';
+  if (preview) {
+    document.getElementById('paywall-section').style.display = 'none';
+
+    const catsWrap = document.createElement('div');
+    catsWrap.className = 'categories';
+    catsWrap.style.marginBottom = '40px';
+    categories.forEach(cat => {
+      const col = getCatColor(cat.score);
+      const bgCol = cat.score >= 14 ? '#edf7f2' : cat.score >= 8 ? '#fef9ee' : '#fdf0ee';
+      catsWrap.innerHTML += `
+        <div class="cat-card open">
+          <div class="cat-card-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="cat-card-left">
+              <div class="cat-score-badge" style="background:${bgCol};color:${col}">${cat.score}</div>
+              <div><div class="cat-card-name">${cat.name}</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="cat-score-text">${cat.score}/${cat.out_of}</span>
+              <div class="cat-chevron"></div>
+            </div>
+          </div>
+          <div class="cat-card-body">
+            <div><div class="sub-label">What is working</div><div class="sub-text">${cat.whats_working}</div></div>
+            <div><div class="sub-label">What is missing</div><div class="sub-text">${cat.whats_missing}</div></div>
+            <div><div class="sub-label">Quick win</div><div class="win-box">${cat.quick_win}</div></div>
+            <div><div class="sub-label">Longer term fix</div><div class="fix-box">${cat.longer_term_fix}</div></div>
+            <div><div class="sub-label">Rewrite examples</div><div class="rewrites">${(cat.rewrite_examples||[]).map(r=>`<div class="rewrite-item">${r}</div>`).join('')}</div></div>
+          </div>
+        </div>`;
+    });
+    document.getElementById('paywall-section').insertAdjacentElement('afterend', catsWrap);
+
+    const actionsTitle = document.createElement('div');
+    actionsTitle.className = 'section-title';
+    actionsTitle.style.marginBottom = '16px';
+    actionsTitle.textContent = 'Priority action plan';
+    const actionsList = document.createElement('div');
+    actionsList.className = 'actions-list';
+    actionsList.style.marginBottom = '40px';
+    (parsed.priority_actions || []).forEach(a => {
+      const impactClass = a.impact === 'High' ? 'impact-high' : a.impact === 'Medium' ? 'impact-medium' : 'impact-low';
+      actionsList.innerHTML += `
+        <div class="action-item">
+          <div class="action-rank">${a.rank}</div>
+          <div><div class="action-title">${a.action}</div><div class="action-why">${a.why_it_matters}</div></div>
+          <div class="impact-tag ${impactClass}">${a.impact}</div>
+        </div>`;
+    });
+    catsWrap.insertAdjacentElement('afterend', actionsTitle);
+    actionsTitle.insertAdjacentElement('afterend', actionsList);
+  }
+
   // Radar chart
   const ctx = document.getElementById('radarChart').getContext('2d');
   new Chart(ctx, {
@@ -778,7 +832,6 @@ async function init() {
     return;
   }
 
-  // Poll for up to 90 seconds
   let attempts = 0;
   const maxAttempts = 18;
 

@@ -558,7 +558,15 @@
 </style>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <script type="text/javascript">
-  Paddle.Initialize({ token: 'live_d95c7da15f18e4805557616fbae' });
+  Paddle.Initialize({
+    token: 'live_d95c7da15f18e4805557616fbae',
+    eventCallback: function(event) {
+      if (event.name === 'checkout.completed') {
+        const submissionId = new URLSearchParams(window.location.search).get('id');
+        window.location.href = 'https://geoanalysistool.com/report.html?id=' + encodeURIComponent(submissionId) + '&preview=true';
+      }
+    }
+  });
 </script>
 </head>
 <body>
@@ -884,10 +892,7 @@ function unlockReport() {
   const submissionId = getParam('id');
   Paddle.Checkout.open({
     items: [{ priceId: 'pri_01kmnkvev4kzz77x1vfj2mzw81', quantity: 1 }],
-    customData: { report_id: submissionId },
-    settings: {
-      successUrl: 'https://geoanalysistool.com/report.html?id=' + encodeURIComponent(submissionId) + '&preview=true'
-    }
+    customData: { report_id: submissionId }
   });
 }
 

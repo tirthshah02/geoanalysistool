@@ -512,6 +512,49 @@
     .chart-section { grid-template-columns: 1fr; }
     footer { padding: 24px 20px; flex-direction: column; gap: 8px; }
   }
+
+  .pdf-bar {
+    background: var(--ink);
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    display: none;
+  }
+
+  .pdf-bar.visible { display: flex; }
+
+  .pdf-bar-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .pdf-btn {
+    background: #fff;
+    color: var(--ink);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Instrument Sans', sans-serif;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pdf-btn:hover { opacity: 0.85; }
+
+  @media print {
+    .pdf-bar, nav, footer, .paywall-section, .paywall-overlay, .paywall-blur { display: none !important; }
+    .score-hero { background: #f0f0f0 !important; color: #000 !important; }
+    .score-big, .score-verdict { color: #000 !important; }
+    body { font-size: 13px; }
+    .wrap { padding: 20px; }
+    .cat-card-body { display: flex !important; }
+  }
 </style>
 </head>
 <body>
@@ -520,6 +563,14 @@
   <a href="/" class="logo">GEO<span>Analysis</span>Tool</a>
   <div class="nav-right">geoanalysistool.com</div>
 </nav>
+
+<!-- PDF bar (shown in preview mode) -->
+<div class="pdf-bar" id="pdf-bar">
+  <div class="pdf-bar-text">Full report — preview mode</div>
+  <button class="pdf-btn" onclick="window.print()">
+    ↓ Download PDF
+  </button>
+</div>
 
 <!-- Loading -->
 <div id="loading" class="wrap">
@@ -741,6 +792,7 @@ function renderReport(fields) {
   const preview = getParam('preview') === 'true';
   if (preview) {
     document.getElementById('paywall-section').style.display = 'none';
+    document.getElementById('pdf-bar').classList.add('visible');
 
     const catsWrap = document.createElement('div');
     catsWrap.className = 'categories';

@@ -671,7 +671,7 @@
           <div class="paywall-title">Unlock your full report</div>
           <div class="paywall-sub">Get detailed analysis, specific rewrite recommendations, and a priority action plan.</div>
         </div>
-        <button class="paywall-btn" onclick="window.location.href='https://geoanalysistool.com/#pricing'">Unlock Full Report — $19</button>
+        <button class="paywall-btn" id="unlock-btn" onclick="unlockReport()">Unlock Full Report — $19</button>
         <div class="paywall-fine">One-time payment · Instant access · PDF included</div>
       </div>
     </div>
@@ -874,6 +874,12 @@ function renderReport(fields) {
       plugins: { legend: { display: false } }
     }
   });
+}
+
+function unlockReport() {
+  const submissionId = getParam('id');
+  const paddleUrl = 'https://buy.paddle.com/product/pri_01kmnkvev4kzz77x1vfj2mzw81?custom_data[report_id]=' + encodeURIComponent(submissionId);
+  window.location.href = paddleUrl;
 }
 
 async function init() {

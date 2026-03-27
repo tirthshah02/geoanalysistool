@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="_XevLNXJtE4iaqiPCYku1xoIUWOoO3Yu4cIbwZbCsCQ" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEO Analysis Tool — AI Citation Readiness Audit</title>
+<title>GEO Analysis Tool: AI Citation Readiness Audit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -513,18 +513,20 @@
   <div class="nav-right">
     <a href="#how-it-works">How it works</a>
     <a href="#pricing">Pricing</a>
-    <a href="#audit" style="color:var(--ink);font-weight:500">Get free audit →</a>
+    <a href="/blog/geo-audit-checklist.html">Blog</a>
+    <a href="#audit" onclick="document.getElementById('audit').scrollIntoView({behavior:'smooth'});return false;" style="color:var(--ink);font-weight:500">Get free audit →</a>
   </div>
 </nav>
 
 <!-- Hero -->
 <section class="hero" id="audit">
-  <div class="eyebrow">Free audit — no signup required</div>
+  <div class="eyebrow">Free audit. No signup required.</div>
   <h1>Does AI <em>actually</em><br>know your page exists?</h1>
-  <p class="hero-sub">Paste any URL and get a full GEO audit — see exactly how likely your page is to be cited by ChatGPT, Perplexity, and Google AI Overviews.</p>
-  <p class="hero-fine">Free score in seconds. Full consulting-grade report for $19.</p>
+  <p class="hero-sub">Paste a page URL and get a full GEO audit. See exactly how likely your content is to be cited by ChatGPT, Claude, and Google AI Overviews.</p>
+  <p class="hero-fine">Free score in under 60 seconds. Full consulting-grade report for $19.</p>
 
   <div class="form-wrap">
+    <div style="padding:16px 20px 0;font-size:13px;color:var(--ink3)">Enter a specific page URL (e.g. yoursite.com/blog-post). Homepage URLs will not produce accurate results.</div>
     <iframe src="https://tally.so/embed/2ELOOb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" height="120" title="GEO Audit"></iframe>
   </div>
 
@@ -541,6 +543,21 @@
 
 <hr class="divider">
 
+<!-- Blog -->
+<section class="section" id="blog">
+  <div class="section-label">From the blog</div>
+  <h2 class="section-title">Learn <em>GEO</em></h2>
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:600px">
+    <a href="/blog/geo-audit-checklist.html" style="display:block;background:#fff;border:1px solid var(--paper3);border-radius:10px;padding:20px 24px;text-decoration:none;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:8px">GEO Audit</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--ink);margin-bottom:6px;line-height:1.3">GEO Audit Checklist 2026: 25 Checks to See If Your Page Gets Cited by AI</div>
+      <div style="font-size:13px;color:var(--ink3)">27 March 2026 · 8 min read</div>
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- How it works -->
 <section class="section" id="how-it-works">
   <div class="section-label">How it works</div>
@@ -550,7 +567,7 @@
     <div class="step">
       <div class="step-num">01</div>
       <div class="step-title">Paste your URL</div>
-      <div class="step-desc">Submit any publicly accessible page — a blog post, landing page, product page, or article.</div>
+      <div class="step-desc">Submit any publicly accessible page - a blog post, landing page, product page, or article.</div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
@@ -604,7 +621,7 @@
     <div class="research-badge">P</div>
     <div class="research-text">
       <h3>Grounded in peer-reviewed research</h3>
-      <p>Our scoring framework is built on the Princeton and IIT Delhi GEO study (Aggarwal et al., 2024), the first academic research to identify which content signals improve AI citation visibility — by up to 40%. Not guesswork. Not SEO intuition. Actual science.</p>
+      <p>Our scoring framework is built on the Princeton and IIT Delhi GEO study (Aggarwal et al., 2024), the first academic research to identify which content signals improve AI citation visibility by up to 40%. Not guesswork. Not SEO intuition. Actual science.</p>
     </div>
   </div>
 </section>
@@ -627,7 +644,7 @@
         <li>Category breakdown overview</li>
         <li>Works on any public URL</li>
       </ul>
-      <a href="#audit" class="price-cta">Get free score</a>
+      <a href="#audit" onclick="document.getElementById('audit').scrollIntoView({behavior:'smooth'});return false;" class="price-cta">Get free score</a>
     </div>
     <div class="price-card featured">
       <div class="price-label">Full Report</div>
@@ -641,16 +658,17 @@
         <li>Priority action plan ranked by impact</li>
         <li>Downloadable PDF report</li>
       </ul>
-      <a href="#audit" class="price-cta">Get full report</a>
+      <a href="#audit" onclick="document.getElementById('audit').scrollIntoView({behavior:'smooth'});return false;" class="price-cta">Get full report</a>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
 <footer>
   <div class="footer-brand">GEO<span>AnalysisTool</span>.com</div>
-  <div class="footer-right">Built for content creators, bloggers, and SEO professionals.</div>
+  <div class="footer-right" style="display:flex;gap:20px;align-items:center">
+    <a href="/blog/geo-audit-checklist.html" style="color:var(--ink3);text-decoration:none;font-size:13px">Blog</a>
+    <a href="/terms.html" style="color:var(--ink3);text-decoration:none;font-size:13px">Terms</a>
+  </div>
 </footer>
 
 </body>

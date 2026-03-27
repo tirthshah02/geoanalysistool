@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEO Audit Checklist 2026: 25 Checks to See If Your Page Gets Cited by AI — GEO Analysis Tool</title>
+<title>GEO Audit Checklist 2026: 25 Checks to See If Your Page Gets Cited by AI - GEO Analysis Tool</title>
 <meta name="description" content="A practical GEO audit checklist for 2026. 25 specific checks across citation hooks, content structure, technical access, and authority signals that determine whether AI models cite your page.">
 <meta name="author" content="GEO Analysis Tool">
 <!-- Google tag (gtag.js) -->
@@ -42,10 +42,12 @@
   .checklist-section { background: #fff; border: 1px solid var(--paper3); border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; }
   .checklist-section h3 { margin-top: 0; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .section-num { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
-  .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--ink2); line-height: 1.6; }
-  .check-list li::before { content: '☐'; font-size: 16px; flex-shrink: 0; margin-top: 1px; color: var(--ink3); }
-  .check-list li strong { color: var(--ink); font-weight: 600; }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .check-list li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; font-size: 14px; color: var(--ink2); line-height: 1.6; padding: 14px 0; border-bottom: 1px solid var(--paper3); }
+  .check-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .check-list li::before { content: '☐'; font-size: 16px; color: var(--ink3); margin-top: 2px; }
+  .check-list li strong { display: block; color: var(--ink); font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .check-list li .check-content { display: flex; flex-direction: column; }
   .score-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; border: 1px solid var(--paper3); border-radius: 10px; overflow: hidden; }
   .score-table th { background: var(--ink); color: #fff; padding: 12px 16px; text-align: left; font-weight: 500; border-right: 1px solid rgba(255,255,255,0.1); }
   .score-table th:last-child { border-right: none; }
@@ -108,60 +110,60 @@
     <tr><td>Entity and Authority</td><td>Author credentials, E-E-A-T signals</td><td>Medium</td></tr>
   </table>
 
-  <p>The Princeton research found that adding statistics to a page improved AI citation rates by up to 40% — the single most impactful intervention tested. The checks below are ordered by impact within each category.</p>
+  <p>The Princeton research found that adding statistics to a page improved AI citation rates by up to 40% - the single most impactful intervention tested. The checks below are ordered by impact within each category.</p>
 
   <h2>The checklist</h2>
 
   <div class="checklist-section">
     <h3><div class="section-num">1</div>Citation Hooks</h3>
     <ul class="check-list">
-      <li><strong>Statistics present:</strong> Does the page contain at least one specific number, percentage, or measurable data point that an AI could extract as a citable fact? Vague claims like "significantly improves" are uncitable. "Improves by 23%" is citable.</li>
-      <li><strong>Original data or research:</strong> Does the page cite or present original data, a study, or a survey result? Pages that are primary sources get cited far more than pages that summarise secondary sources.</li>
-      <li><strong>Quotations from named sources:</strong> Are there direct quotes from named individuals, organisations, or studies? Attributed quotes are one of the strongest citation signals the Princeton research identified.</li>
-      <li><strong>Outbound citations to authoritative sources:</strong> Does the page link to peer-reviewed research, government data, or established industry sources? Paradoxically, citing others increases how much AI models cite you — it signals that your content is research-backed rather than opinion.</li>
-      <li><strong>Specific, verifiable claims:</strong> Are the page's main claims falsifiable and specific enough that a fact-checker could verify them? "This method works well" fails this check. "This method reduced load time by 1.4 seconds in our testing" passes it.</li>
+      <li><div class="check-content"><strong>Statistics present:</strong> Does the page contain at least one specific number, percentage, or measurable data point that an AI could extract as a citable fact? Vague claims like "significantly improves" are uncitable. "Improves by 23%" is citable.</div></li>
+      <li><div class="check-content"><strong>Original data or research:</strong> Does the page cite or present original data, a study, or a survey result? Pages that are primary sources get cited far more than pages that summarise secondary sources.</div></li>
+      <li><div class="check-content"><strong>Quotations from named sources:</strong> Are there direct quotes from named individuals, organisations, or studies? Attributed quotes are one of the strongest citation signals the Princeton research identified.</div></li>
+      <li><div class="check-content"><strong>Outbound citations to authoritative sources:</strong> Does the page link to peer-reviewed research, government data, or established industry sources? Paradoxically, citing others increases how much AI models cite you - it signals that your content is research-backed rather than opinion.</div></li>
+      <li><div class="check-content"><strong>Specific, verifiable claims:</strong> Are the page's main claims falsifiable and specific enough that a fact-checker could verify them? "This method works well" fails this check. "This method reduced load time by 1.4 seconds in our testing" passes it.</div></li>
     </ul>
   </div>
 
   <div class="checklist-section">
     <h3><div class="section-num">2</div>Content Structure</h3>
     <ul class="check-list">
-      <li><strong>FAQ section with self-contained answers:</strong> Does the page include a FAQ section where each answer makes sense without requiring the reader to have read the rest of the article? AI models extract FAQ answers and serve them independently. If an answer requires context from elsewhere on the page, it won't get cited.</li>
-      <li><strong>Heading hierarchy is logical:</strong> Does the page use H1, H2, H3 correctly with one clear topic per section? AI models use heading structure to understand what each passage is about before deciding whether to cite it.</li>
-      <li><strong>Direct answers lead each section:</strong> Does each section open with the most important information first rather than building to a conclusion? AI models pull the first substantive sentence of a section as a candidate citation. Burying the key point at the end of a paragraph means it gets missed.</li>
-      <li><strong>Comparison tables present where relevant:</strong> If the page compares options, products, or approaches, is there a structured table? Tabular data is highly retrievable by AI engines and rarely appears in pages that rely purely on prose.</li>
-      <li><strong>FAQ schema implemented:</strong> Beyond having FAQ content, is the page's FAQ section marked up with JSON-LD FAQ schema? Schema makes the Q&A structure explicit to AI crawlers rather than requiring them to infer it from the HTML.</li>
-      <li><strong>Passage-level clarity:</strong> Can individual paragraphs be extracted and understood without surrounding context? AI models break pages into passages and evaluate each one. A passage that requires three other paragraphs to make sense will never be cited.</li>
+      <li><div class="check-content"><strong>FAQ section with self-contained answers:</strong> Does the page include a FAQ section where each answer makes sense without requiring the reader to have read the rest of the article? AI models extract FAQ answers and serve them independently. If an answer requires context from elsewhere on the page, it won't get cited.</div></li>
+      <li><div class="check-content"><strong>Heading hierarchy is logical:</strong> Does the page use H1, H2, H3 correctly with one clear topic per section? AI models use heading structure to understand what each passage is about before deciding whether to cite it.</div></li>
+      <li><div class="check-content"><strong>Direct answers lead each section:</strong> Does each section open with the most important information first rather than building to a conclusion? AI models pull the first substantive sentence of a section as a candidate citation. Burying the key point at the end of a paragraph means it gets missed.</div></li>
+      <li><div class="check-content"><strong>Comparison tables present where relevant:</strong> If the page compares options, products, or approaches, is there a structured table? Tabular data is highly retrievable by AI engines and rarely appears in pages that rely purely on prose.</div></li>
+      <li><div class="check-content"><strong>FAQ schema implemented:</strong> Beyond having FAQ content, is the page's FAQ section marked up with JSON-LD FAQ schema? Schema makes the Q&A structure explicit to AI crawlers rather than requiring them to infer it from the HTML.</div></li>
+      <li><div class="check-content"><strong>Passage-level clarity:</strong> Can individual paragraphs be extracted and understood without surrounding context? AI models break pages into passages and evaluate each one. A passage that requires three other paragraphs to make sense will never be cited.</div></li>
     </ul>
   </div>
 
   <div class="checklist-section">
     <h3><div class="section-num">3</div>Content Clarity</h3>
     <ul class="check-list">
-      <li><strong>Authoritative tone throughout:</strong> Does the writing make claims confidently rather than hedging everything? "This might help" signals uncertainty. "This reduces X by Y" signals expertise. AI models prefer the latter.</li>
-      <li><strong>Technical terms used correctly:</strong> When technical terms appear, are they used precisely and defined on first use? The Princeton research found that appropriate use of technical terminology improved AI citation rates — it signals domain expertise.</li>
-      <li><strong>Qualitative claims are supported:</strong> Every subjective claim ("this is the best approach") should be followed by a specific reason. Unsupported assertions are the most common reason pages get paraphrased without attribution rather than cited directly.</li>
-      <li><strong>Fluent, readable prose:</strong> Is the writing clean and easy to follow? This matters more for AI citation than most people expect. Awkward sentence construction reduces how much an AI model can confidently extract and use.</li>
+      <li><div class="check-content"><strong>Authoritative tone throughout:</strong> Does the writing make claims confidently rather than hedging everything? "This might help" signals uncertainty. "This reduces X by Y" signals expertise. AI models prefer the latter.</div></li>
+      <li><div class="check-content"><strong>Technical terms used correctly:</strong> When technical terms appear, are they used precisely and defined on first use? The Princeton research found that appropriate use of technical terminology improved AI citation rates - it signals domain expertise.</div></li>
+      <li><div class="check-content"><strong>Qualitative claims are supported:</strong> Every subjective claim ("this is the best approach") should be followed by a specific reason. Unsupported assertions are the most common reason pages get paraphrased without attribution rather than cited directly.</div></li>
+      <li><div class="check-content"><strong>Fluent, readable prose:</strong> Is the writing clean and easy to follow? This matters more for AI citation than most people expect. Awkward sentence construction reduces how much an AI model can confidently extract and use.</div></li>
     </ul>
   </div>
 
   <div class="checklist-section">
     <h3><div class="section-num">4</div>Technical Access</h3>
     <ul class="check-list">
-      <li><strong>AI crawlers not blocked in robots.txt:</strong> Check your robots.txt file to confirm GPTBot (OpenAI), ClaudeBot (Anthropic), PerplexityBot, and Google-Extended are not blocked. Many sites accidentally block AI crawlers through overly broad disallow rules.</li>
-      <li><strong>Article or webpage schema implemented:</strong> Is the page marked up with Article, BlogPosting, or WebPage schema that includes author, datePublished, and dateModified? This helps AI engines understand the page's type, recency, and authorship.</li>
-      <li><strong>Page loads under 3 seconds:</strong> Verify with Google PageSpeed Insights. Slow pages are partially crawled or skipped by AI bots with strict timeout limits.</li>
-      <li><strong>Content is server-side rendered:</strong> Is the main content rendered in the initial HTML response rather than loaded by JavaScript? AI crawlers often don't execute JavaScript, meaning dynamically loaded content is invisible to them.</li>
+      <li><div class="check-content"><strong>AI crawlers not blocked in robots.txt:</strong> Check your robots.txt file to confirm GPTBot (OpenAI), ClaudeBot (Anthropic), PerplexityBot, and Google-Extended are not blocked. Many sites accidentally block AI crawlers through overly broad disallow rules.</div></li>
+      <li><div class="check-content"><strong>Article or webpage schema implemented:</strong> Is the page marked up with Article, BlogPosting, or WebPage schema that includes author, datePublished, and dateModified? This helps AI engines understand the page's type, recency, and authorship.</div></li>
+      <li><div class="check-content"><strong>Page loads under 3 seconds:</strong> Verify with Google PageSpeed Insights. Slow pages are partially crawled or skipped by AI bots with strict timeout limits.</div></li>
+      <li><div class="check-content"><strong>Content is server-side rendered:</strong> Is the main content rendered in the initial HTML response rather than loaded by JavaScript? AI crawlers often don't execute JavaScript, meaning dynamically loaded content is invisible to them.</div></li>
     </ul>
   </div>
 
   <div class="checklist-section">
     <h3><div class="section-num">5</div>Entity and Authority</h3>
     <ul class="check-list">
-      <li><strong>Named author with credentials:</strong> Does the page have a clearly identified author with a brief statement of relevant expertise? Anonymous content from a generic "team" signals lower authority than content from a named person with verifiable credentials.</li>
-      <li><strong>First-hand experience signals:</strong> Does the author mention personal testing, direct experience, or specific involvement with the topic? The E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) framework rewards first-hand experience signals highly.</li>
-      <li><strong>Publication and update dates visible:</strong> Are dates clearly shown? AI models weight recent content more heavily for topics that evolve over time. A page last updated in 2022 competing with a 2026 page will lose on recency.</li>
-      <li><strong>Entity clarity — what is this page about?:</strong> Can an AI model definitively understand the topic, scope, and purpose of the page from its structure alone without reading every word? Entity ambiguity is one of the most common reasons pages get ignored despite strong content.</li>
+      <li><div class="check-content"><strong>Named author with credentials:</strong> Does the page have a clearly identified author with a brief statement of relevant expertise? Anonymous content from a generic "team" signals lower authority than content from a named person with verifiable credentials.</div></li>
+      <li><div class="check-content"><strong>First-hand experience signals:</strong> Does the author mention personal testing, direct experience, or specific involvement with the topic? The E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) framework rewards first-hand experience signals highly.</div></li>
+      <li><div class="check-content"><strong>Publication and update dates visible:</strong> Are dates clearly shown? AI models weight recent content more heavily for topics that evolve over time. A page last updated in 2022 competing with a 2026 page will lose on recency.</div></li>
+      <li><div class="check-content"><strong>Entity clarity - what is this page about?:</strong> Can an AI model definitively understand the topic, scope, and purpose of the page from its structure alone without reading every word? Entity ambiguity is one of the most common reasons pages get ignored despite strong content.</div></li>
     </ul>
   </div>
 
@@ -172,8 +174,8 @@
   <table class="score-table">
     <tr><th>Score</th><th>Interpretation</th><th>Priority action</th></tr>
     <tr><td>20 or more</td><td>Strong AI citation readiness</td><td>Monitor and maintain</td></tr>
-    <tr><td>13 to 19</td><td>Developing — competitive topics need improvement</td><td>Focus on Citation Hooks first</td></tr>
-    <tr><td>8 to 12</td><td>Weak — unlikely to be cited for competitive queries</td><td>Structural and citation overhaul</td></tr>
+    <tr><td>13 to 19</td><td>Developing - competitive topics need improvement</td><td>Focus on Citation Hooks first</td></tr>
+    <tr><td>8 to 12</td><td>Weak - unlikely to be cited for competitive queries</td><td>Structural and citation overhaul</td></tr>
     <tr><td>Below 8</td><td>Not citation-ready</td><td>Comprehensive rewrite required</td></tr>
   </table>
 
@@ -197,12 +199,12 @@
 
   <div class="faq-item">
     <div class="faq-q">How long does it take for GEO improvements to show results?</div>
-    <div class="faq-a">AI models update their knowledge and citation patterns continuously. Pages with strong citation signals can start appearing in AI-generated answers within days of being crawled. Unlike traditional SEO where ranking changes can take months, AI citation patterns respond faster to content changes — though this also means they can change without warning as AI models update.</div>
+    <div class="faq-a">AI models update their knowledge and citation patterns continuously. Pages with strong citation signals can start appearing in AI-generated answers within days of being crawled. Unlike traditional SEO where ranking changes can take months, AI citation patterns respond faster to content changes - though this also means they can change without warning as AI models update.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q">Do I need to optimise for each AI engine separately?</div>
-    <div class="faq-a">The core signals — statistics, clear structure, authoritative tone, schema markup, and named expertise — work across ChatGPT, Perplexity, Claude, and Google AI Overviews. There are platform-specific differences in how each engine weights recency and source diversity, but the foundational signals are consistent enough that a single optimisation effort improves performance across all platforms.</div>
+    <div class="faq-a">The core signals - statistics, clear structure, authoritative tone, schema markup, and named expertise - work across ChatGPT, Perplexity, Claude, and Google AI Overviews. There are platform-specific differences in how each engine weights recency and source diversity, but the foundational signals are consistent enough that a single optimisation effort improves performance across all platforms.</div>
   </div>
 
   <div class="faq-item">
@@ -212,17 +214,17 @@
 
   <div class="faq-item">
     <div class="faq-q">What is the single most impactful GEO improvement?</div>
-    <div class="faq-a">According to the Princeton GEO research, adding specific statistics to a page produced the largest measurable improvement in AI citation rates — up to 40% in controlled testing. If your page has only one GEO improvement to make, replacing qualitative claims with quantified, sourced data points is the place to start.</div>
+    <div class="faq-a">According to the Princeton GEO research, adding specific statistics to a page produced the largest measurable improvement in AI citation rates - up to 40% in controlled testing. If your page has only one GEO improvement to make, replacing qualitative claims with quantified, sourced data points is the place to start.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q">How do I know if my page is currently being cited by AI engines?</div>
-    <div class="faq-a">The most reliable method is manual testing — run 10 to 15 queries related to your page's topic in ChatGPT, Perplexity, and Google, and check whether your page or site is mentioned or linked. Dedicated GEO monitoring tools like Otterly.ai and Profound automate this at scale, but manual testing gives you an immediate baseline at no cost.</div>
+    <div class="faq-a">The most reliable method is manual testing - run 10 to 15 queries related to your page's topic in ChatGPT, Perplexity, and Google, and check whether your page or site is mentioned or linked. Dedicated GEO monitoring tools like Otterly.ai and Profound automate this at scale, but manual testing gives you an immediate baseline at no cost.</div>
   </div>
 
   <div class="cta-box">
     <h3>Run a free GEO audit on any page</h3>
-    <p>Paste any URL and get a scored audit across all five categories — Citation Hooks, Content Structure, Content Clarity, Technical Access, and Entity and Authority. Free score in under 60 seconds.</p>
+    <p>Paste any URL and get a scored audit across all five categories - Citation Hooks, Content Structure, Content Clarity, Technical Access, and Entity and Authority. Free score in under 60 seconds.</p>
     <a href="/" class="cta-btn">Get your free GEO score →</a>
   </div>
 

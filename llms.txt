@@ -2,7 +2,7 @@
 > A web-based audit tool that scores any webpage for AI citation readiness across five factors: Citation Hooks, Content Structure, Content Clarity, Technical Access, and Entity and Authority. Scoring methodology is grounded in the Princeton and IIT Delhi GEO research (Aggarwal et al., 2024).
 
 ## Product
-- [Homepage](https://geoanalysistool.com/): Submit any public URL to get a free GEO audit score and top 3 issues. Full consulting-grade report available for $19.
+- [Homepage](https://geoanalysistool.com/): Submit any public URL to get a free GEO audit score and top 3 issues. Full consulting-grade report available for $4.99.
 
 ## Blog
 - [GEO Audit Checklist 2026](https://geoanalysistool.com/blog/geo-audit-checklist.html): 25 specific checks across citation hooks, content structure, technical access, and authority signals that determine whether AI models cite a page.
